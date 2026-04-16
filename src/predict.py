@@ -1,5 +1,6 @@
 from ultralytics import YOLO
 import cv2
+import pandas as pd
 
 # Load model (change path if needed)
 model = YOLO("models/best.pt")  # or your trained model
