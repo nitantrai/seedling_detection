@@ -1,0 +1,7 @@
+
+UAV Seedling Detection Report
+-----------------------------
+Total images processed: 6
+Total detections: 412
+Average detections per image: 68.67
+Highest-detection image: plot4_rgb_0701.jpg
