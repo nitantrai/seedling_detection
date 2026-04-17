@@ -1,10 +1,20 @@
-#forest monitoring pipeline 
-Goal: Build an automated pipeline to detect seedlings/trees from UAV multispectral imagery and generate geospatial outputs and statistics for forest monitoring.
+## Problem
+Manual seedling counting from UAV imagery is time-consuming and difficult to scale.
 
-## Model
+## Approach
+This pipeline uses a YOLO-based deep learning model to detect seedlings from aerial imagery and generate structured outputs for monitoring.
 
-The trained model weights are not included due to size limitations.
+## Tools Used
+- Python
+- Ultralytics YOLO
+- Pandas
 
-To run this project:
-- Place your trained YOLO model in the `models/` folder
-- Update the path in `predict.py`
+## Output Files
+- `outputs/results.csv`: per-image detection results
+- `outputs/summary.csv`: aggregated summary statistics
+
+## Future Improvements
+- Density estimation
+- Geospatial outputs
+- Dashboard visualization
+- Multi-modal fusion with LiDAR
