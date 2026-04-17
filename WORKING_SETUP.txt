@@ -1,0 +1,5 @@
+Environment: seedling_prj
+Ultralytics: 8.3.163
+Input image: multispectral image converted/used as plot4_rgb_0701.jpg
+Model: best.pt
+Command: python src\predict.py
