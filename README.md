@@ -1,20 +1,26 @@
-## Problem
-Manual seedling counting from UAV imagery is time-consuming and difficult to scale.
+# UAV Seedling Detection and Monitoring Pipeline
 
-## Approach
-This pipeline uses a YOLO-based deep learning model to detect seedlings from aerial imagery and generate structured outputs for monitoring.
+## Overview
+This project automates seedling detection from UAV imagery using a YOLO-based deep learning model. It processes images in batch mode, counts detections, and generates summary outputs for monitoring and reporting.
 
-## Tools Used
-- Python
-- Ultralytics YOLO
-- Pandas
+## Features
+- Batch image inference
+- Detection counting
+- Confidence-based metrics
+- CSV reporting
+- Summary statistics
 
-## Output Files
-- `outputs/results.csv`: per-image detection results
-- `outputs/summary.csv`: aggregated summary statistics
+## Project Structure
+- `src/predict.py` - batch inference
+- `src/summarize.py` - summary statistics
+- `outputs/results.csv` - per-image results
+- `outputs/summary.csv` - project summary
+
+## Example Output
+Include one predicted image and mention the CSV outputs.
 
 ## Future Improvements
 - Density estimation
-- Geospatial outputs
+- Geospatial output support
 - Dashboard visualization
-- Multi-modal fusion with LiDAR
+- LiDAR fusion
