@@ -29,4 +29,5 @@ Include one predicted image and mention the CSV outputs.
 ## Dashboard
 This project includes a Streamlit dashboard for reviewing detection outputs, summary statistics, confidence metrics, and sample result images.
 ## Dashboard preview
-
+![Dashboard](outputs/dashboard1.png)
+![Dashboard](outputs/dashboard2.png)
