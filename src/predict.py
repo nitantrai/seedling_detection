@@ -1,36 +1,55 @@
 from ultralytics import YOLO
-import cv2
+import os
 import pandas as pd
 
-# Load model (change path if needed)
-model = YOLO("models/best.pt")  # or your trained model
+# Load model
+model = YOLO("models/best.pt")
 
-# Load image
-image_path = "data/sample.jpg"
-img = cv2.imread(image_path)
+# Folder with images
+data_folder = "data"
 
-# Run prediction
-results = model(image_path)
+# Output list
+results_list = []
 
-# Extract detections
-boxes = results[0].boxes
+# Loop through all images
+for filename in os.listdir(data_folder):
+    if filename.lower().endswith((".jpg", ".png", ".jpeg")):
+        image_path = os.path.join(data_folder, filename)
 
-# Count detections
-num_detections = len(boxes)
+        print(f"Processing: {filename}")
 
-print(f"Detected objects: {num_detections}")
+        # Run prediction
+        results = model(image_path)
 
-# Save output image
-output_path = "outputs/result.jpg"
-results[0].save(filename=output_path)
+        # Count detections
+        boxes = results[0].boxes
 
-# Save results to CSV
-data = {
-    "image": [image_path],
-    "detections": [num_detections]
-}
+        num_detections = len(boxes)
 
-df = pd.DataFrame(data)
+        if num_detections > 0:
+            confidences = boxes.conf.cpu().numpy()
+            avg_conf = confidences.mean()
+            max_conf = confidences.max()
+        else:
+            avg_conf = 0
+            max_conf = 0
+
+        print(f"Detections: {num_detections}")
+
+        # Save output image
+        output_image_path = f"outputs/{filename}"
+        results[0].save(filename=output_image_path)
+
+        # Store results
+        results_list.append({
+            "image": filename,
+            "detections": num_detections,
+            "avg_confidence": avg_conf,
+            "max_confidence": max_conf
+        })
+
+# Save all results to CSV
+df = pd.DataFrame(results_list)
 df.to_csv("outputs/results.csv", index=False)
 
-print("Results saved to outputs/results.csv")
+print("✅ Batch processing complete. Results saved to outputs/results.csv")
